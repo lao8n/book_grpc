@@ -1,5 +1,7 @@
 package main
 
+// this is the server
+
 import (
 	"log"
 	"net"

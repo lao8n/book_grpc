@@ -1,5 +1,7 @@
 package main
 
+// this is the server service
+
 import (
 	"context"
 	pb "productinfo/service/ecommerce"
