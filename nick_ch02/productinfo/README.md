@@ -19,6 +19,7 @@ protoc --go-grpc_out="/Users/nicholasdrake/Documents/grpc/nick_ch02/productinfo/
 
 // from service folder
 go build -v -o bin/service
+bin/service
 
 generate the client messages
 protoc --go_out="/Users/nicholasdrake/Documents/grpc/nick_ch02/productinfo/client/ecommerce" "proto/product_info.proto"
@@ -28,3 +29,4 @@ protoc --go-grpc_out="/Users/nicholasdrake/Documents/grpc/nick_ch02/productinfo/
 
 // from client folder
 go build -v -o bin/client
+bin/client
