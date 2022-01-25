@@ -10,12 +10,21 @@ protoc --go_out=plugins=grpc:. *.proto
 change .proto file to include
 option go_package = "./";
 
-generate the messages
+generate the server messages
 // from productinfo folder
 protoc --go_out="/Users/nicholasdrake/Documents/grpc/nick_ch02/productinfo/service/ecommerce" "proto/product_info.proto"
 
-generate the services
+generate the server 
 protoc --go-grpc_out="/Users/nicholasdrake/Documents/grpc/nick_ch02/productinfo/service/ecommerce" "proto/product_info.proto"
+
+// from service folder
+go build -v -o bin/service
+
+generate the client messages
+protoc --go_out="/Users/nicholasdrake/Documents/grpc/nick_ch02/productinfo/client/ecommerce" "proto/product_info.proto"
 
 generate the client
 protoc --go-grpc_out="/Users/nicholasdrake/Documents/grpc/nick_ch02/productinfo/client/ecommerce" "proto/product_info.proto"
+
+// from client folder
+go build -v -o bin/client

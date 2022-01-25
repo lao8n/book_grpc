@@ -4,18 +4,22 @@ package main
 
 import (
 	"context"
-	pb "productinfo/service/ecommerce"
+
+	pb "service/ecommerce"
 
 	"github.com/gofrs/uuid"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 // server is used to implement ecommerce/product_info
-type server struct {
+type Server struct {
 	productMap map[string]*pb.Product
+	pb.UnimplementedProductInfoServer
 }
 
 // AddProduct implements ecommerce.AddProduct
-func (s *server) AddProduct(ctx context.Context, in *pb.Product) (*pb.productID, error) {
+func (s *Server) AddProduct(ctx context.Context, in *pb.Product) (*pb.ProductID, error) {
 	out, err := uuid.NewV4()
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "Error while generating Product ID", err)
@@ -29,8 +33,8 @@ func (s *server) AddProduct(ctx context.Context, in *pb.Product) (*pb.productID,
 }
 
 // GetProduct implements ecommerce.GetProduct
-func (s *server) GetProduct(ctx context.Context, in *pb.ProductID) (*pb.Product, error) {
-	value, exists := s.ProductMap[in.Value]
+func (s *Server) GetProduct(ctx context.Context, in *pb.ProductID) (*pb.Product, error) {
+	value, exists := s.productMap[in.Value]
 	if exists {
 		return value, status.New(codes.OK, "").Err()
 	}
