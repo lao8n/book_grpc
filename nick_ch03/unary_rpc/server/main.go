@@ -1,4 +1,4 @@
-package server
+package main
 
 import (
 	"context"
@@ -38,7 +38,6 @@ func (s *server) GetOrder(ctx context.Context, orderId *wrapper.StringValue) (*p
 	if exists {
 		return &ord, status.New(codes.OK, "").Err()
 	}
-
 	return nil, status.Errorf(codes.NotFound, "Order does not exist. : ", orderId)
 }
 

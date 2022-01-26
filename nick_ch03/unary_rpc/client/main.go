@@ -37,4 +37,8 @@ func main() {
 	if retrievedOrder != nil {
 		log.Print("GetOrder Response -> : ", retrievedOrder)
 	}
+	retrievedOrder, _ = client.GetOrder(ctx, &wrapper.StringValue{Value: "102"})
+	if retrievedOrder != nil {
+		log.Print("GetOrder Response -> : ", retrievedOrder)
+	}
 }
